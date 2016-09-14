@@ -1,0 +1,1 @@
+DB = 'sqlite:////tmp/mb_test.db'

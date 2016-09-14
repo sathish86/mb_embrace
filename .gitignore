@@ -1,0 +1,13 @@
+# Python cruft
+.cache 
+*.egg-info 
+dist 
+build
+*.pyc
+
+# Project cruft
+local_settings.py
+
+# IDE cruft
+.idea
+
