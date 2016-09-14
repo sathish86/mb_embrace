@@ -20,6 +20,7 @@ setup(
         'flask',
         'Flask-SQLAlchemy',
         'bumpversion',
+        'uwsgi <=2.0',
     ],
     tests_require=[
         'mock',
