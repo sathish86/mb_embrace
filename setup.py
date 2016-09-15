@@ -21,13 +21,15 @@ setup(
         'Flask-SQLAlchemy',
         'bumpversion',
         'uwsgi <=2.0',
-    ],
-    tests_require=[
-        'mock',
+        'factual-api',
+        'requests',
         'pytest',
         'pytest-cov',
         'pytest-mock',
         'pytest-capturelog',
+    ],
+    tests_require=[
+        'mock',
     ],
     classifiers=[],
 )

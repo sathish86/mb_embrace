@@ -8,6 +8,6 @@ Step1:
 Need to setup two environmental variables.
 
 PYTHONPATH='/<project_path>'
-MB_SETTING_MODULE='local_settings'
+MB_SETTINGS_MODULE='local_settings'
 
 
