@@ -16,11 +16,11 @@ setup(
     install_requires=[
         'sqlalchemy >=1.0,<1.1',
         'python-dateutil >=2.5,<2.6',
-        'psycopg2 <=2.6',
+        'psycopg2',
         'flask',
         'Flask-SQLAlchemy',
         'bumpversion',
-        'uwsgi <=2.0',
+        'uwsgi',
         'factual-api',
         'requests',
         'pytest',

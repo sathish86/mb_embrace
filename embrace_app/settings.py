@@ -7,6 +7,7 @@ BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # You can key the configurations off of anything - I use project path.
 configs = {
     '/home/sathish/Projects/workspace/data_embrace/embrace_app': 'local_settings',
+    'E:\\Workspace\\data_embrace\\embrace_app': 'settings_test',
     '/opt/test/data_embrace/embrace_app': 'settings_test',
     '/opt/prod/data_embrace/embrace_app': 'settings_prod',
 }
