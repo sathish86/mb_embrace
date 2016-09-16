@@ -27,6 +27,7 @@ setup(
         'pytest-cov',
         'pytest-mock',
         'pytest-capturelog',
+        'flask-restful',
     ],
     tests_require=[
         'mock',
