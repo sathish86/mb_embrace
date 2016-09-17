@@ -12,4 +12,8 @@ local_settings.py
 .idea
 
 # DB file
-*.db
+*.db
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

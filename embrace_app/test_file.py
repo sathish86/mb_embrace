@@ -1,2 +1,0 @@
-import settings
-print settings.CONF_VAR
