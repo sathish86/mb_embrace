@@ -4,16 +4,16 @@ import copy
 
 class Recommendation:
     """
-    Based on Cuisine likes,dislikes and requirement inputs, it process the business logic and respond back
-    with recommendations details
+    Based on input details about cuisine likes,dislikes and requirement, this class process the business logic
+    to find recommendations which tries to satisfies most of the group members.
     """
 
-    def __init__(self, input):
+    def __init__(self, data):
         """
         initialize the data
-        :param input: list of dictionary which contains valid input data.
+        :param data: list of dictionary which has user input data.
         """
-        self.input_data = input
+        self.input_data = data
 
     def validate(self):
         """
@@ -30,11 +30,11 @@ class Recommendation:
         except KeyError as ex:
             raise InputDataError
 
-    def recursive_operation(self, input_list):
+    def find_common_interest(self, input_list):
         """
-        loop through to get least satisfaction result from the group.
-        :param input_list: contains likes, dislikes, requirement list of set.
-        :return:
+        loop through the data to get (most to least) satisfaction result from the group members.
+        :param input_list: contains any of this likes, dislikes, requirement list of set.
+        :return: list : list of elements
         """
         result = None
         while True:
@@ -52,8 +52,9 @@ class Recommendation:
 
     def process_data(self):
         """
-        process input data and return the recommendation details
-        :return:
+        process input data and return the recommendation details by finding out (most to least) common from the group
+        members
+        :return: list: likes, dislikes, requirement elements
         """
         temp_data = copy.deepcopy(self.input_data)
         likes_list = []
@@ -67,7 +68,7 @@ class Recommendation:
                 requirement_list.append(set([row['requirements']]))
 
         # find intersection of all the data.
-        result_likes = self.recursive_operation(likes_list)
-        result_dislikes = self.recursive_operation(dislikes_list)
-        result_requirement = self.recursive_operation(requirement_list)
+        result_likes = self.find_common_interest(likes_list)
+        result_dislikes = self.find_common_interest(dislikes_list)
+        result_requirement = self.find_common_interest(requirement_list)
         return result_likes, result_dislikes, result_requirement

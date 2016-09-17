@@ -11,3 +11,5 @@ local_settings.py
 # IDE cruft
 .idea
 
+# DB file
+*.db
