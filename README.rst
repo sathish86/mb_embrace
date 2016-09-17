@@ -13,6 +13,7 @@ MB_SETTINGS_MODULE='local_settings'
 
 Assumption:
 
+
 Task 1:
 1. Used GOOGLE MAP API (2500 request per day) to find the GEO coordinates of a location and using these information
     it finds the restaurant details based cuisine type from Factual API by distance in ascending order.

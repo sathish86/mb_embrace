@@ -13,14 +13,15 @@ from recommendation import Recommendation
 from factual import Factual
 import settings
 import constants
+import utils
 
 logging.basicConfig()
 logger = logging.getLogger('MB API Logging')
 
-app = Flask(__name__)
-api = Api(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = settings.DB
-db = SQLAlchemy(app)
+application = Flask(__name__)
+api = Api(application, catch_all_404s=True)
+application.config['SQLALCHEMY_DATABASE_URI'] = settings.DB
+db = SQLAlchemy(application)
 
 
 class RecommendationLogging(db.Model):
@@ -62,7 +63,7 @@ def error_response(err_msg):
     :param err_msg: error message from the custom exception
     :return: list: json dict with error message
     """
-    return flask.jsonify([{'error_message': err_msg}])
+    return flask.json.jsonify([{'error_message': err_msg}])
 
 
 def create_factual_api():
@@ -99,7 +100,8 @@ class FindShopsResource(Resource):
                 # filter based on geo points and type of the cuisine type with a distance in ascending order.
                 data = factual_table_data.geo(circle(lat, lng, constants.GEO_CIRCLE_DISTANCE_METER)) \
                     .sort_asc('$distance').filters({'cuisine': type_val}).limit(constants.RESULT_LIMIT).data()
-                return flask.jsonify(data)
+                result_data = utils.filter_output(data)
+                return flask.json.jsonify(result_data)
         except LocationEmptyError as e:
             logger.exception("LocationEmptyError error occurred: %s", e)
             return error_response(e)
@@ -148,7 +150,8 @@ class RecommendationResource(Resource):
             data = factual_table_data.geo(circle(lat, lng, constants.GEO_CIRCLE_DISTANCE_METER)).sort_asc('$distance') \
                 .filters({'cuisine': {'$includes_any': result_likes, '$excludes_any': result_dislikes}}) \
                 .limit(constants.RESULT_LIMIT).data()
-            return flask.jsonify(data)
+            result_data = utils.filter_output(data)
+            return flask.json.jsonify(result_data)
         except InputDataError as ex:
             logger.exception("InputDataError error occurred: %s", ex)
             return error_response(ex)
@@ -162,4 +165,4 @@ api.add_resource(FindShopsResource, '/find')
 api.add_resource(RecommendationResource, '/recommend')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True)

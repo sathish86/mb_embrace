@@ -14,19 +14,12 @@ setup(
         'embrace_app': 'embrace_app'
     },
     install_requires=[
-        'sqlalchemy >=1.0,<1.1',
-        'python-dateutil >=2.5,<2.6',
-        'psycopg2',
-        'flask',
+        'flask >=0.10',
         'Flask-SQLAlchemy',
         'bumpversion',
-        'uwsgi',
         'factual-api',
         'requests',
         'pytest',
-        'pytest-cov',
-        'pytest-mock',
-        'pytest-capturelog',
         'flask-restful',
     ],
     tests_require=[

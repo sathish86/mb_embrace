@@ -13,12 +13,13 @@ configs = {
 }
 
 # Import the configuration settings file
-config_module = __import__('conf.%s' % configs[APP_PATH], globals(), locals(), 'data_embrace')
+if configs.get(APP_PATH, None):
+    config_module = __import__('conf.%s' % configs[APP_PATH], globals(), locals(), 'data_embrace')
 
-# Load the config settings properties into the local scope.
-for setting in dir(config_module):
-    if setting == setting.upper():
-        locals()[setting] = getattr(config_module, setting)
+    # Load the config settings properties into the local scope.
+    for setting in dir(config_module):
+        if setting == setting.upper():
+            locals()[setting] = getattr(config_module, setting)
 
 
 SETTING_ENVIRONMENT_VARIABLE = 'MB_SETTINGS_MODULE'
